@@ -1,12 +1,12 @@
 import React from 'react';
 
-let BlogPost = ( {blog, removeBlog, editBlog} ) => 
+let BlogPost = ( {blogs, blog, removeBlog, editBlog} ) => 
     <div>
-        <h1 className="header">{`${blog.title}`}</h1>
-        <h3>{`Written By: ${blog.userID}`}</h3>
-        <p>{`${blog.body}`}</p>
-        <button onClick= {() => removeBlog(blog)}>Remove Blog</button>
-        <button onClick= {() => editBlog(blog)}>Edit Blog</button>
+        <h2 className="header">{blog.title}</h2>
+        <h3>{`Written By: ${blog.userId}`}</h3>
+        <p>{blog.body}</p>
+        <button onClick= {() => removeBlog(blogs, blog)}>Remove Blog</button>
+        <button onClick= {() => editBlog(blogs, blog)}>Edit Blog</button>
     </div>
 
 export default BlogPost;

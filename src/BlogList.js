@@ -1,20 +1,29 @@
 import React from 'react';
-let h = React.createElement;
-let BlogListFunction = ({blogs}) => h('div', {className: 'post-list'}, blogs);
+import BlogPost from './BlogPost.js';
+import EditableBlogPost from './EditableBlogPost.js';
 
-let BlogList = (blogs) => {
-    let newBlogList = [];
-    blogs.forEach( (blog) => {
-    if (blog === blogBeingEdited ) {
-        let newBlog = <EditableBlogPost key={blog.id} blog={blog} removeBlog={removeBlog} editBlog={editBlog} saveBlog={saveBlog} updateActions={updateActions} />;
-        newBlogList.push(newBlog);
-    } else {
-        let newBlog = <BlogPost key={blog.id} blog={blog} removeBlog={removeBlog} editBlog={editBlog} saveBlog={saveBlog} updateActions={updateActions} />;
-        newBlogList.push(newBlog);
-    }
-    });
-    let allBlogs = h(BlogListFunction, {blogs: newBlogList});
-    return allBlogs;
-  }
+let AllBlogs = ({blogs, removeBlog, blogBeingEdited, editBlog, saveBlog, updateActions}) =>
+<div>{ 
+blogs.map( (blog) => {
+if (blog === blogBeingEdited ) {
+    return <EditableBlogPost 
+    key={blog.id} 
+    blogs={blogs} blog={blog} 
+    removeBlog={removeBlog} 
+    editBlog={editBlog} 
+    saveBlog={saveBlog} 
+    updateActions={updateActions} />;
+} else {
+    return <BlogPost 
+    key={blog.id} 
+    blogs={blogs} 
+    blog={blog} 
+    removeBlog={removeBlog} 
+    editBlog={editBlog} 
+    saveBlog={saveBlog} 
+    updateActions={updateActions} />;
+}
+})
+}</div>;
 
-  export default BlogList;
+export default AllBlogs;
